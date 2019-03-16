@@ -1,0 +1,17 @@
+.item {
+  width: 90px;
+  height: 90px;
+  background-color: orange;
+  box-shadow: 0px 0px 22px 2px #845216;
+  border-radius: 100%;
+  position: absolute;
+}
+
+.item-fired {
+  width: 90px;
+  height: 90px;
+  background-color: #ff0031;
+  box-shadow: 0px 0px 22px 2px #730c0c;
+  border-radius: 100%;
+  position: absolute;
+}
