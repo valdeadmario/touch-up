@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { defaultParams } from "../params";
 
-const Game = () => {
-  return(<div>Game...</div>)
+let gameParams = {...defaultParams}
+
+const initialGameState = () => ({
+  targets: [],
+  probability: defaultParams.probability,
+  life: defaultParams.lifes + 1,
+  score:0
+});
+
+export default class Game extends Component{
+  state = {
+    ...initialGameState(),
+    start: false
+  }
+
 }
-
-export default Game;
