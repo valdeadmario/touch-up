@@ -15,5 +15,5 @@ export const defaultParams = {
   difficultStepMsec: 7,
   difficultStepProbability: 4,
   difficultIntervalMsec: 1200,
-  lifes: 4,
+  lifes: 4
 }
