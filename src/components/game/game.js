@@ -15,8 +15,38 @@ const initialGameState = () => ({
 export default class Game extends Component{
   state = {
     ...initialGameState(),
-    start: false
+    start: false,
+    gameover: null,
+    targetsCnt: 0
   };
+
+  runNewGame = () => {
+    this.setState({ ...initialGameState(), gameover: false, start: true, targetsCnt: 0})
+    this.makeGameFlow(this.gameOptions())
+  }
+
+  gameOptions = () => ({
+    probability: this.state.probability,
+    periodMsec: gameParams.periodMsec,
+  })
+
+  makeGameFlow = (options) => {
+    if (this.state.life === 0) {
+      gameParams = {...defaultParams};
+      this.setState({...initialGameState(), gameover: true, lastscore: this.state.score})
+      return false
+    }
+    let gameIterator = this.targetGenerate(options)
+    setTimeout(
+      () => {
+        clearInterval(gameIterator)
+        options.periodMsec -= gameParams.difficultStepMsec
+        options.probability += gameParams.difficultStepProbability
+        this.makeGameFlow(options, this)
+      },
+      gameParams.difficultIntervalMsec
+    )
+  }
 
   targetGenerate = ({probability, periodMsec}) => {
     return setInterval(() => {
@@ -60,4 +90,5 @@ export default class Game extends Component{
       : 0
     this.setState({life: life})
   }
+
 }
