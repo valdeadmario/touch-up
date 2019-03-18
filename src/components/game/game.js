@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+
 import { defaultParams } from "../params";
+
 import Item from "../item/item";
+import GameOver from "../game-over";
+
+import './game.scss';
 
 
 let gameParams = {...defaultParams}
@@ -15,9 +20,7 @@ const initialGameState = () => ({
 export default class Game extends Component{
   state = {
     ...initialGameState(),
-    start: false,
-    gameover: null,
-    targetsCnt: 0
+    start: false
   };
 
   runNewGame = () => {
@@ -68,17 +71,18 @@ export default class Game extends Component{
         })
       }
     }, periodMsec)
-  }
+  };
 
   clickTarget = (id) => {
     this.setState(({ targets }) => {
-      const idx = targets.findIndex((item) => item.id === id);
+      const idx = targets.findIndex((item) => item.props.id === id);
 
       const newArr = [
         ...targets.slice(0,idx),
         ...targets.slice(idx+1)
       ];
       return {
+        score: ++this.state.score,
         targets: newArr
       }
     });
@@ -91,4 +95,37 @@ export default class Game extends Component{
     this.setState({life: life})
   }
 
+  render() {
+    let message;
+    if (this.state.gameover === true) {
+      message = <GameOver
+                  score={this.state.score}
+                  runNewGame={this.runNewGame}/>
+
+    }else if ( this.state.start === false){
+      message = (
+        <div
+          className='message'
+          onClick={() => this.runNewGame()}
+        >
+          <span style={{cursor: 'pointer'}}>New Game:)</span>
+        </div>)
+    }
+
+    return (
+      <div>
+        <div className='panel'>
+          {
+            this.state.gameover !== true && this.state.start === true
+            ? `Lives: ${this.state.life} Score: ${this.state.score}`
+            : null
+          }
+        </div>
+        <div className="game-field" >
+          {message}
+          { this.state.targets }
+        </div>
+      </div>
+    )
+  }
 }
