@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import defaultParams from '../params';
+import { defaultParams } from '../params';
+
+import './item.scss';
 
 export default class Item extends Component{
   state = {
@@ -19,10 +21,12 @@ export default class Item extends Component{
     return true;
   }
 
+
   render() {
+
     return (
       <div
-        className='item'
+        className={this.state.fired ? 'item-fired' : 'item'}
         onClick={
           () => {
             !this.state.fired
@@ -30,7 +34,15 @@ export default class Item extends Component{
             && this.props.clickHandler(this.props.id)
           }
         }
+        style={ makeTargetStyle({...this.props.coordinate}) }
         />
     )
+  }
+}
+
+const makeTargetStyle = ({x, y}) => {
+  return {
+    top: y,
+    left: x
   }
 }
