@@ -1,22 +1,28 @@
+@import '../../variables';
+
 .panel {
   text-align: center;
   font-size: 30px;
   color: #000;
   background-color: #fff;
-  padding: 40px 0;
-  margin-top: 60px;
 }
 
 .game-field {
   width: 1200px;
   height: 680px;
-  background-color: #fff;
+
   cursor: crosshair;
   position: relative;
+}
+
+.game-wrapper {
+  background-color: $secondary-color;
+  box-shadow: 8px 9px 20px -2px #000;
+  margin-top: 40px;
 }
 
 .message {
   text-align: center;
   font-size: 83px;
-  padding-top: 165px;
+  padding-top: 265px;
 }

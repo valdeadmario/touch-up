@@ -1,8 +1,12 @@
-body {
+@import 'variables';
+
+* {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  background-color: #eeeeee;
+}
+
+body {
+  font-family: 'Margarine', cursive;
 }
 
 #root {
@@ -10,4 +14,6 @@ body {
   min-width: 100vw;
   display: flex;
   justify-content: center;
+  background-color: $primary-color;
+  padding-bottom: 300px;
 }
