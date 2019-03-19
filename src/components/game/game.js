@@ -6,6 +6,7 @@ import Item from "../item/item";
 import GameOver from "../game-over";
 
 import './game.scss';
+import Panel from "../panel";
 
 
 let gameParams = {...defaultParams}
@@ -99,7 +100,7 @@ export default class Game extends Component{
     let message;
     if (this.state.gameover === true) {
       message = <GameOver
-                  score={this.state.score}
+                  score={this.state.lastscore}
                   runNewGame={this.runNewGame}/>
 
     }else if ( this.state.start === false){
@@ -113,19 +114,14 @@ export default class Game extends Component{
     }
 
     return (
-      <div>
-        <div className='panel'>
-          {
-            this.state.gameover !== true && this.state.start === true
-            ? `Lives: ${this.state.life} Score: ${this.state.score}`
-            : null
-          }
+        <div className='game-wrapper'>
+          <Panel life={this.state.life}
+                 score={this.state.score}/>
+          <div className="game-field" >
+            {message}
+            { this.state.targets }
+          </div>
         </div>
-        <div className="game-field" >
-          {message}
-          { this.state.targets }
-        </div>
-      </div>
     )
   }
 }

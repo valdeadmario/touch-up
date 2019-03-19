@@ -1,15 +1,8 @@
 @import '../../variables';
 
-.panel {
-  text-align: center;
-  font-size: 30px;
-  color: #000;
-  background-color: #fff;
-}
-
 .game-field {
   width: 1200px;
-  height: 680px;
+  height: 650px;
 
   cursor: crosshair;
   position: relative;
@@ -18,7 +11,7 @@
 .game-wrapper {
   background-color: $secondary-color;
   box-shadow: 8px 9px 20px -2px #000;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .message {
