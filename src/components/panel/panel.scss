@@ -1,6 +1,15 @@
 .panel {
-  text-align: center;
+  text-align: right;
+  margin-right: 30px;
+  margin-top: 10px;
+
   font-size: 30px;
   color: #000;
-  background-color: #fff;
+}
+
+.fa-heart {
+  color: red;
+}
+.fa-star {
+  color: orange;
 }
