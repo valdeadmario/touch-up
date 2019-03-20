@@ -27,12 +27,12 @@ export default class Game extends Component{
   runNewGame = () => {
     this.setState({ ...initialGameState(), gameover: false, start: true, targetsCnt: 0})
     this.makeGameFlow(this.gameOptions())
-  }
+  };
 
   gameOptions = () => ({
     probability: this.state.probability,
     periodMsec: gameParams.periodMsec,
-  })
+  });
 
   makeGameFlow = (options) => {
     if (this.state.life === 0) {
@@ -50,13 +50,13 @@ export default class Game extends Component{
       },
       gameParams.difficultIntervalMsec
     )
-  }
+  };
 
   targetGenerate = ({probability, periodMsec}) => {
     return setInterval(() => {
       if (Math.random() * 100 <= probability) {
-        const x = Math.random() * (gameParams.fieldWidth - gameParams.targetWidth)
-        const y = Math.random() * (gameParams.fieldHeight - gameParams.targetHeight)
+        const x = Math.random() * (gameParams.fieldWidth - gameParams.targetWidth);
+        const y = Math.random() * (gameParams.fieldHeight - gameParams.targetHeight);
         this.setState({
           targets: [
             ...this.state.targets,
@@ -94,7 +94,7 @@ export default class Game extends Component{
       ? this.state.life - 1
       : 0
     this.setState({life: life})
-  }
+  };
 
   render() {
     let message;
